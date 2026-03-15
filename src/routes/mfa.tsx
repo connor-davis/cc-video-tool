@@ -234,6 +234,10 @@ function MfaRoute() {
                   <Select
                     onValueChange={(value) => setSelectedFactorId(value ?? '')}
                     value={resolvedFactorId}
+                    itemToStringLabel={(item) =>
+                      pendingAuth.factors.find((f) => f.id === item)
+                        ?.displayName || ''
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Choose a factor" />
