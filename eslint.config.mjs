@@ -8,6 +8,14 @@ import tseslint from 'typescript-eslint';
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
+    ignores: [
+      'dist/**',
+      'node_modules/**',
+      'convex/_generated/**',
+      'src/routeTree.gen.ts',
+    ],
+  },
+  {
     files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
     languageOptions: {
       parserOptions: {

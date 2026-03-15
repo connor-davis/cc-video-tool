@@ -5,11 +5,21 @@ import {
 } from '@tanstack/react-router';
 
 import { Button } from '@/components/ui/button';
+import type { RouterAuthContext } from '@/lib/auth-types';
 import { routeTree } from '@/routeTree.gen';
+
+type AppRouterContext = {
+  auth: RouterAuthContext;
+};
 
 const router = createRouter({
   routeTree,
-  context: {},
+  context: {
+    auth: {
+      isAuthenticated: false,
+      user: null,
+    },
+  } satisfies AppRouterContext,
   defaultPreload: 'intent',
   defaultPreloadStaleTime: 0,
   defaultStructuralSharing: true,
