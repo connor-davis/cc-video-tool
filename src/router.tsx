@@ -2,23 +2,23 @@ import {
   ErrorComponent,
   createRouter,
   useRouter,
-} from "@tanstack/react-router"
+} from '@tanstack/react-router';
 
-import { Button } from "@/components/ui/button"
-import { routeTree } from "@/routeTree.gen"
+import { Button } from '@/components/ui/button';
+import { routeTree } from '@/routeTree.gen';
 
 const router = createRouter({
   routeTree,
   context: {},
-  defaultPreload: "intent",
+  defaultPreload: 'intent',
   defaultPreloadStaleTime: 0,
   defaultStructuralSharing: true,
   scrollRestoration: true,
   defaultErrorComponent: RouterErrorBoundary,
-})
+});
 
 function RouterErrorBoundary({ error }: { error: Error }) {
-  const appRouter = useRouter()
+  const appRouter = useRouter();
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -37,20 +37,20 @@ function RouterErrorBoundary({ error }: { error: Error }) {
           <Button onClick={() => appRouter.invalidate()}>Try again</Button>
           <Button
             variant="outline"
-            onClick={() => appRouter.navigate({ to: "/" })}
+            onClick={() => appRouter.navigate({ to: '/' })}
           >
             Go home
           </Button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface Register {
-    router: typeof router
+    router: typeof router;
   }
 }
 
-export { router }
+export { router };

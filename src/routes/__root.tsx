@@ -1,26 +1,26 @@
 import {
-  Link,
-  Outlet,
-  createRootRouteWithContext,
-} from "@tanstack/react-router"
-import {
   DesktopIcon,
   MoonIcon,
   SparkleIcon,
   SunIcon,
   VideoCameraIcon,
-} from "@phosphor-icons/react"
+} from '@phosphor-icons/react';
+import {
+  Link,
+  Outlet,
+  createRootRouteWithContext,
+} from '@tanstack/react-router';
 
-import { Badge } from "@/components/ui/badge"
-import { Button, buttonVariants } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { useTheme } from "@/components/theme-provider"
-import { cn } from "@/lib/utils"
+import { useTheme } from '@/components/theme-provider';
+import { Badge } from '@/components/ui/badge';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
 export const Route = createRootRouteWithContext<Record<string, never>>()({
   component: RootLayout,
   notFoundComponent: RootNotFound,
-})
+});
 
 function RootLayout() {
   return (
@@ -52,13 +52,13 @@ function RootLayout() {
                   to="/"
                   activeOptions={{ exact: true }}
                   className={cn(
-                    buttonVariants({ variant: "ghost", size: "sm" }),
-                    "rounded-full"
+                    buttonVariants({ variant: 'ghost', size: 'sm' }),
+                    'rounded-full'
                   )}
                   activeProps={{
                     className: cn(
-                      buttonVariants({ variant: "secondary", size: "sm" }),
-                      "rounded-full"
+                      buttonVariants({ variant: 'secondary', size: 'sm' }),
+                      'rounded-full'
                     ),
                   }}
                 >
@@ -67,13 +67,13 @@ function RootLayout() {
                 <Link
                   to="/about"
                   className={cn(
-                    buttonVariants({ variant: "ghost", size: "sm" }),
-                    "rounded-full"
+                    buttonVariants({ variant: 'ghost', size: 'sm' }),
+                    'rounded-full'
                   )}
                   activeProps={{
                     className: cn(
-                      buttonVariants({ variant: "secondary", size: "sm" }),
-                      "rounded-full"
+                      buttonVariants({ variant: 'secondary', size: 'sm' }),
+                      'rounded-full'
                     ),
                   }}
                 >
@@ -93,45 +93,47 @@ function RootLayout() {
         </main>
 
         <footer className="mt-6 flex flex-col gap-2 rounded-3xl border bg-card p-4 text-sm text-muted-foreground shadow-xs sm:flex-row sm:items-center sm:justify-between">
-          <span>Built with React 19, Vite, TanStack Router, and shadcn/ui.</span>
+          <span>
+            Built with React 19, Vite, TanStack Router, and shadcn/ui.
+          </span>
           <span>Theme shortcut: press `d` to toggle dark mode.</span>
         </footer>
       </div>
     </div>
-  )
+  );
 }
 
 function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className="flex flex-wrap gap-2">
       <Button
-        variant={theme === "light" ? "secondary" : "outline"}
+        variant={theme === 'light' ? 'secondary' : 'outline'}
         size="sm"
-        onClick={() => setTheme("light")}
+        onClick={() => setTheme('light')}
       >
         <SunIcon data-icon="inline-start" />
         Light
       </Button>
       <Button
-        variant={theme === "dark" ? "secondary" : "outline"}
+        variant={theme === 'dark' ? 'secondary' : 'outline'}
         size="sm"
-        onClick={() => setTheme("dark")}
+        onClick={() => setTheme('dark')}
       >
         <MoonIcon data-icon="inline-start" />
         Dark
       </Button>
       <Button
-        variant={theme === "system" ? "secondary" : "outline"}
+        variant={theme === 'system' ? 'secondary' : 'outline'}
         size="sm"
-        onClick={() => setTheme("system")}
+        onClick={() => setTheme('system')}
       >
         <DesktopIcon data-icon="inline-start" />
         System
       </Button>
     </div>
-  )
+  );
 }
 
 function RootNotFound() {
@@ -148,11 +150,11 @@ function RootNotFound() {
             screen and keep exploring.
           </p>
         </div>
-        <Link to="/" className={buttonVariants({ variant: "default" })}>
+        <Link to="/" className={buttonVariants({ variant: 'default' })}>
           <SparkleIcon data-icon="inline-start" />
           Return home
         </Link>
       </div>
     </div>
-  )
+  );
 }
