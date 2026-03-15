@@ -1,27 +1,27 @@
-import { Link, createFileRoute } from "@tanstack/react-router"
 import {
   ArrowLeftIcon,
   LightningIcon,
   MapTrifoldIcon,
   PackageIcon,
   ShieldCheckIcon,
-} from "@phosphor-icons/react"
+} from '@phosphor-icons/react';
+import { Link, createFileRoute } from '@tanstack/react-router';
 
-import { Badge } from "@/components/ui/badge"
-import { buttonVariants } from "@/components/ui/button"
+import { Badge } from '@/components/ui/badge';
+import { buttonVariants } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { cn } from "@/lib/utils"
+} from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
-export const Route = createFileRoute("/about")({
+export const Route = createFileRoute('/about')({
   component: AboutRoute,
-})
+});
 
 function AboutRoute() {
   return (
@@ -32,7 +32,9 @@ function AboutRoute() {
             <Badge variant="outline">About this rebuild</Badge>
             <Badge variant="secondary">File-based routing</Badge>
           </div>
-          <CardTitle className="text-3xl">Why this version is cleaner</CardTitle>
+          <CardTitle className="text-3xl">
+            Why this version is cleaner
+          </CardTitle>
           <CardDescription className="max-w-3xl text-base">
             The app no longer depends on missing intermediary page files. Each
             route owns its component locally, while the shared shell lives in
@@ -43,7 +45,7 @@ function AboutRoute() {
         <CardContent className="flex flex-col gap-4">
           <Link
             to="/"
-            className={cn(buttonVariants({ variant: "outline" }), "w-fit")}
+            className={cn(buttonVariants({ variant: 'outline' }), 'w-fit')}
           >
             <ArrowLeftIcon data-icon="inline-start" />
             Back to home
@@ -54,27 +56,27 @@ function AboutRoute() {
       <section className="grid gap-6 md:grid-cols-2">
         {[
           {
-            title: "Typed router registration",
+            title: 'Typed router registration',
             description:
-              "The new `src/router.ts` registers the router so `Link`, params, and route navigation stay strongly typed across the app.",
+              'The new `src/router.ts` registers the router so `Link`, params, and route navigation stay strongly typed across the app.',
             icon: ShieldCheckIcon,
           },
           {
-            title: "Sensible defaults",
+            title: 'Sensible defaults',
             description:
-              "Intent preloading and scroll restoration now apply globally instead of being left to per-route guesswork.",
+              'Intent preloading and scroll restoration now apply globally instead of being left to per-route guesswork.',
             icon: LightningIcon,
           },
           {
-            title: "Inline route ownership",
+            title: 'Inline route ownership',
             description:
-              "This page and the home page are defined directly in their route files to match your requested organization.",
+              'This page and the home page are defined directly in their route files to match your requested organization.',
             icon: MapTrifoldIcon,
           },
           {
-            title: "Expanded component library",
+            title: 'Expanded component library',
             description:
-              "The project now includes the full shadcn component set, so future screens can be composed without extra install passes.",
+              'The project now includes the full shadcn component set, so future screens can be composed without extra install passes.',
             icon: PackageIcon,
           },
         ].map(({ title, description, icon: Icon }) => (
@@ -107,5 +109,5 @@ function AboutRoute() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

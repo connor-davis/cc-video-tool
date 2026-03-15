@@ -1,0 +1,9 @@
+{
+  "functions": "convex/",
+  "codegen": {
+    "fileType": "ts"
+  },
+  "node": {
+    "nodeVersion": "20"
+  }
+}

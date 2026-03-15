@@ -9,9 +9,57 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VerifyEmailRouteImport } from './routes/verify-email'
+import { Route as SignUpRouteImport } from './routes/sign-up'
+import { Route as SignInRouteImport } from './routes/sign-in'
+import { Route as SelectOrganizationRouteImport } from './routes/select-organization'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as MfaRouteImport } from './routes/mfa'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VerifyEmailRoute = VerifyEmailRouteImport.update({
+  id: '/verify-email',
+  path: '/verify-email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignUpRoute = SignUpRouteImport.update({
+  id: '/sign-up',
+  path: '/sign-up',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignInRoute = SignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SelectOrganizationRoute = SelectOrganizationRouteImport.update({
+  id: '/select-organization',
+  path: '/select-organization',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MfaRoute = MfaRouteImport.update({
+  id: '/mfa',
+  path: '/mfa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -26,31 +74,150 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/app': typeof AppRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/mfa': typeof MfaRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/select-organization': typeof SelectOrganizationRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/verify-email': typeof VerifyEmailRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/app': typeof AppRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/mfa': typeof MfaRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/select-organization': typeof SelectOrganizationRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/verify-email': typeof VerifyEmailRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/app': typeof AppRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/mfa': typeof MfaRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/select-organization': typeof SelectOrganizationRoute
+  '/sign-in': typeof SignInRoute
+  '/sign-up': typeof SignUpRoute
+  '/verify-email': typeof VerifyEmailRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/app'
+    | '/forgot-password'
+    | '/mfa'
+    | '/reset-password'
+    | '/select-organization'
+    | '/sign-in'
+    | '/sign-up'
+    | '/verify-email'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to:
+    | '/'
+    | '/about'
+    | '/app'
+    | '/forgot-password'
+    | '/mfa'
+    | '/reset-password'
+    | '/select-organization'
+    | '/sign-in'
+    | '/sign-up'
+    | '/verify-email'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/app'
+    | '/forgot-password'
+    | '/mfa'
+    | '/reset-password'
+    | '/select-organization'
+    | '/sign-in'
+    | '/sign-up'
+    | '/verify-email'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AppRoute: typeof AppRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  MfaRoute: typeof MfaRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  SelectOrganizationRoute: typeof SelectOrganizationRoute
+  SignInRoute: typeof SignInRoute
+  SignUpRoute: typeof SignUpRoute
+  VerifyEmailRoute: typeof VerifyEmailRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/verify-email': {
+      id: '/verify-email'
+      path: '/verify-email'
+      fullPath: '/verify-email'
+      preLoaderRoute: typeof VerifyEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-up': {
+      id: '/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof SignUpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sign-in': {
+      id: '/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/select-organization': {
+      id: '/select-organization'
+      path: '/select-organization'
+      fullPath: '/select-organization'
+      preLoaderRoute: typeof SelectOrganizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mfa': {
+      id: '/mfa'
+      path: '/mfa'
+      fullPath: '/mfa'
+      preLoaderRoute: typeof MfaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -71,6 +238,14 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AppRoute: AppRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  MfaRoute: MfaRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  SelectOrganizationRoute: SelectOrganizationRoute,
+  SignInRoute: SignInRoute,
+  SignUpRoute: SignUpRoute,
+  VerifyEmailRoute: VerifyEmailRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

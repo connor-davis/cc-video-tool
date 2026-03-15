@@ -1,28 +1,50 @@
 import {
+  ArrowSquareOutIcon,
+  DesktopIcon,
+  MoonIcon,
+  SignInIcon,
+  SignOutIcon,
+  SparkleIcon,
+  SunIcon,
+  UserPlusIcon,
+  VideoCameraIcon,
+} from '@phosphor-icons/react';
+import {
   Link,
   Outlet,
   createRootRouteWithContext,
-} from "@tanstack/react-router"
-import {
-  DesktopIcon,
-  MoonIcon,
-  SparkleIcon,
-  SunIcon,
-  VideoCameraIcon,
-} from "@phosphor-icons/react"
+  useNavigate,
+} from '@tanstack/react-router';
 
-import { Badge } from "@/components/ui/badge"
-import { Button, buttonVariants } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { useTheme } from "@/components/theme-provider"
-import { cn } from "@/lib/utils"
+import { useAuth } from '@/components/auth/auth-provider';
+import { useTheme } from '@/components/theme-provider';
+import { Badge } from '@/components/ui/badge';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import type { RouterAuthContext } from '@/lib/auth-types';
+import { cn } from '@/lib/utils';
 
-export const Route = createRootRouteWithContext<Record<string, never>>()({
+type RootRouteContext = {
+  auth: RouterAuthContext;
+};
+
+export const Route = createRootRouteWithContext<RootRouteContext>()({
   component: RootLayout,
   notFoundComponent: RootNotFound,
-})
+});
 
 function RootLayout() {
+  const navigate = useNavigate();
+  const { isAuthenticated, signOut, user } = useAuth();
+
+  async function handleSignOut() {
+    await signOut();
+    await navigate({
+      to: '/sign-in',
+      search: { invitationToken: undefined },
+    });
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-6 sm:px-6 lg:px-8">
@@ -52,13 +74,13 @@ function RootLayout() {
                   to="/"
                   activeOptions={{ exact: true }}
                   className={cn(
-                    buttonVariants({ variant: "ghost", size: "sm" }),
-                    "rounded-full"
+                    buttonVariants({ variant: 'ghost', size: 'sm' }),
+                    'rounded-full'
                   )}
                   activeProps={{
                     className: cn(
-                      buttonVariants({ variant: "secondary", size: "sm" }),
-                      "rounded-full"
+                      buttonVariants({ variant: 'secondary', size: 'sm' }),
+                      'rounded-full'
                     ),
                   }}
                 >
@@ -67,19 +89,88 @@ function RootLayout() {
                 <Link
                   to="/about"
                   className={cn(
-                    buttonVariants({ variant: "ghost", size: "sm" }),
-                    "rounded-full"
+                    buttonVariants({ variant: 'ghost', size: 'sm' }),
+                    'rounded-full'
                   )}
                   activeProps={{
                     className: cn(
-                      buttonVariants({ variant: "secondary", size: "sm" }),
-                      "rounded-full"
+                      buttonVariants({ variant: 'secondary', size: 'sm' }),
+                      'rounded-full'
                     ),
                   }}
                 >
                   About
                 </Link>
+                {isAuthenticated ? (
+                  <Link
+                    to="/app"
+                    className={cn(
+                      buttonVariants({ variant: 'ghost', size: 'sm' }),
+                      'rounded-full'
+                    )}
+                    activeProps={{
+                      className: cn(
+                        buttonVariants({ variant: 'secondary', size: 'sm' }),
+                        'rounded-full'
+                      ),
+                    }}
+                  >
+                    Workspace
+                  </Link>
+                ) : (
+                  <>
+                    <Link
+                      to="/sign-in"
+                      search={{ invitationToken: undefined }}
+                      className={cn(
+                        buttonVariants({ variant: 'ghost', size: 'sm' }),
+                        'rounded-full'
+                      )}
+                      activeProps={{
+                        className: cn(
+                          buttonVariants({ variant: 'secondary', size: 'sm' }),
+                          'rounded-full'
+                        ),
+                      }}
+                    >
+                      <SignInIcon data-icon="inline-start" />
+                      Sign in
+                    </Link>
+                    <Link
+                      to="/sign-up"
+                      search={{ invitationToken: undefined }}
+                      className={cn(
+                        buttonVariants({ variant: 'ghost', size: 'sm' }),
+                        'rounded-full'
+                      )}
+                      activeProps={{
+                        className: cn(
+                          buttonVariants({ variant: 'secondary', size: 'sm' }),
+                          'rounded-full'
+                        ),
+                      }}
+                    >
+                      <UserPlusIcon data-icon="inline-start" />
+                      Sign up
+                    </Link>
+                  </>
+                )}
               </nav>
+
+              {isAuthenticated ? (
+                <div className="flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm">
+                  <ArrowSquareOutIcon className="size-4 text-primary" />
+                  <span className="max-w-48 truncate">{user?.email}</span>
+                  <Button
+                    onClick={() => void handleSignOut()}
+                    size="sm"
+                    variant="ghost"
+                  >
+                    <SignOutIcon data-icon="inline-start" />
+                    Sign out
+                  </Button>
+                </div>
+              ) : null}
 
               <ThemeToggle />
             </div>
@@ -93,45 +184,47 @@ function RootLayout() {
         </main>
 
         <footer className="mt-6 flex flex-col gap-2 rounded-3xl border bg-card p-4 text-sm text-muted-foreground shadow-xs sm:flex-row sm:items-center sm:justify-between">
-          <span>Built with React 19, Vite, TanStack Router, and shadcn/ui.</span>
+          <span>
+            Built with React 19, Vite, TanStack Router, and shadcn/ui.
+          </span>
           <span>Theme shortcut: press `d` to toggle dark mode.</span>
         </footer>
       </div>
     </div>
-  )
+  );
 }
 
 function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className="flex flex-wrap gap-2">
       <Button
-        variant={theme === "light" ? "secondary" : "outline"}
+        variant={theme === 'light' ? 'secondary' : 'outline'}
         size="sm"
-        onClick={() => setTheme("light")}
+        onClick={() => setTheme('light')}
       >
         <SunIcon data-icon="inline-start" />
         Light
       </Button>
       <Button
-        variant={theme === "dark" ? "secondary" : "outline"}
+        variant={theme === 'dark' ? 'secondary' : 'outline'}
         size="sm"
-        onClick={() => setTheme("dark")}
+        onClick={() => setTheme('dark')}
       >
         <MoonIcon data-icon="inline-start" />
         Dark
       </Button>
       <Button
-        variant={theme === "system" ? "secondary" : "outline"}
+        variant={theme === 'system' ? 'secondary' : 'outline'}
         size="sm"
-        onClick={() => setTheme("system")}
+        onClick={() => setTheme('system')}
       >
         <DesktopIcon data-icon="inline-start" />
         System
       </Button>
     </div>
-  )
+  );
 }
 
 function RootNotFound() {
@@ -148,11 +241,11 @@ function RootNotFound() {
             screen and keep exploring.
           </p>
         </div>
-        <Link to="/" className={buttonVariants({ variant: "default" })}>
+        <Link to="/" className={buttonVariants({ variant: 'default' })}>
           <SparkleIcon data-icon="inline-start" />
           Return home
         </Link>
       </div>
     </div>
-  )
+  );
 }

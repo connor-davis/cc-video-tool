@@ -1,14 +1,14 @@
-import { Link, createFileRoute } from "@tanstack/react-router"
 import {
   ArrowRightIcon,
   CheckCircleIcon,
   CompassIcon,
   PaletteIcon,
   StackIcon,
-} from "@phosphor-icons/react"
+} from '@phosphor-icons/react';
+import { Link, createFileRoute } from '@tanstack/react-router';
 
-import { Badge } from "@/components/ui/badge"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Badge } from '@/components/ui/badge';
+import { Button, buttonVariants } from '@/components/ui/button';
 import {
   Card,
   CardAction,
@@ -17,13 +17,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { cn } from "@/lib/utils"
+} from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute('/')({
   component: HomeRoute,
-})
+});
 
 function HomeRoute() {
   return (
@@ -53,7 +53,7 @@ function HomeRoute() {
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/about"
-                className={buttonVariants({ variant: "default", size: "lg" })}
+                className={buttonVariants({ variant: 'default', size: 'lg' })}
               >
                 <CompassIcon data-icon="inline-start" />
                 Explore the route details
@@ -63,9 +63,9 @@ function HomeRoute() {
                 size="lg"
                 onClick={() =>
                   window.open(
-                    "https://tanstack.com/router/latest/docs/framework/react/overview",
-                    "_blank",
-                    "noopener,noreferrer"
+                    'https://tanstack.com/router/latest/docs/framework/react/overview',
+                    '_blank',
+                    'noopener,noreferrer'
                   )
                 }
               >
@@ -89,21 +89,21 @@ function HomeRoute() {
           <CardContent className="flex flex-col gap-4">
             {[
               {
-                title: "Router registration",
+                title: 'Router registration',
                 description:
-                  "A dedicated router module now provides type-safe navigation and global defaults.",
+                  'A dedicated router module now provides type-safe navigation and global defaults.',
                 icon: StackIcon,
               },
               {
-                title: "Route colocation",
+                title: 'Route colocation',
                 description:
-                  "The route components stay inside `index.tsx`, `about.tsx`, and `__root.tsx`.",
+                  'The route components stay inside `index.tsx`, `about.tsx`, and `__root.tsx`.',
                 icon: CheckCircleIcon,
               },
               {
-                title: "UI foundation",
+                title: 'UI foundation',
                 description:
-                  "Every shadcn component was installed so the app can expand without more setup churn.",
+                  'Every shadcn component was installed so the app can expand without more setup churn.',
                 icon: PaletteIcon,
               },
             ].map(({ title, description, icon: Icon }) => (
@@ -129,19 +129,19 @@ function HomeRoute() {
       <section className="grid gap-6 md:grid-cols-3">
         {[
           {
-            title: "Navigation",
+            title: 'Navigation',
             description:
-              "Header links use TanStack Router `Link` so navigation remains semantic and type-safe.",
+              'Header links use TanStack Router `Link` so navigation remains semantic and type-safe.',
           },
           {
-            title: "Error handling",
+            title: 'Error handling',
             description:
-              "The router now owns a default error boundary and the root route owns not-found UX.",
+              'The router now owns a default error boundary and the root route owns not-found UX.',
           },
           {
-            title: "Theming",
+            title: 'Theming',
             description:
-              "Your existing theme provider stays in place, with quick light, dark, and system controls in the shell.",
+              'Your existing theme provider stays in place, with quick light, dark, and system controls in the shell.',
           },
         ].map(({ title, description }) => (
           <Card key={title} size="sm">
@@ -153,8 +153,8 @@ function HomeRoute() {
               <Link
                 to="/about"
                 className={cn(
-                  buttonVariants({ variant: "ghost", size: "sm" }),
-                  "-ml-2"
+                  buttonVariants({ variant: 'ghost', size: 'sm' }),
+                  '-ml-2'
                 )}
               >
                 Learn more
@@ -165,5 +165,5 @@ function HomeRoute() {
         ))}
       </section>
     </div>
-  )
+  );
 }
